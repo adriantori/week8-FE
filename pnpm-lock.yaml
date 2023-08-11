@@ -16,6 +16,9 @@ devDependencies:
   '@types/bootstrap':
     specifier: ^5.2.6
     version: 5.2.6
+  '@types/chart.js':
+    specifier: ^2.9.37
+    version: 2.9.37
 
 packages:
 
@@ -32,6 +35,12 @@ packages:
       '@popperjs/core': 2.11.8
     dev: true
 
+  /@types/chart.js@2.9.37:
+    resolution: {integrity: sha512-9bosRfHhkXxKYfrw94EmyDQcdjMaQPkU1fH2tDxu8DWXxf1mjzWQAV4laJF51ZbC2ycYwNDvIm1rGez8Bug0vg==}
+    dependencies:
+      moment: 2.29.4
+    dev: true
+
   /bootstrap@5.3.1(@popperjs/core@2.11.8):
     resolution: {integrity: sha512-jzwza3Yagduci2x0rr9MeFSORjcHpt0lRZukZPZQJT1Dth5qzV7XcgGqYzi39KGAVYR8QEDVoO0ubFKOxzMG+g==}
     peerDependencies:
@@ -46,3 +55,7 @@ packages:
     dependencies:
       '@kurkle/color': 0.3.2
     dev: false
+
+  /moment@2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: true
