@@ -13,35 +13,40 @@ export default function fetchHTML() {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch(api_url, { method: 'GET' });
         const data = yield response.json();
-        const lastId = data[Object.keys(data)[Object.keys(data).length - 1]].id;
-        const formOutput = document.getElementById("ulOutput");
-        let totalCash = 0;
-        let arrAmount = [];
-        let arrLabels = [];
-        for (let i = 0; i < data.length; i++) {
-            formOutput.innerHTML += `
-                <tr id=output-${data[i].id}>
-                    <td>${data[i].id}</td>
-                    <td>${data[i].type}</td>
-                    <td>${data[i].name}</td>
-                    <td>${data[i].detail}</td>
-                    <td>${data[i].amount}</td>
-                    <td>
-                    <button type="button" class="btn btn-warning" onclick="editElement('${data[i].id}')">EDIT</button>
-                    <button type="button" class="btn btn-danger" onclick="deleteElement('${data[i].id}')">DELETE</button>
-                    </td>
-                </tr>
-                    `;
-            arrLabels.push(data[i].type);
-            if (data[i].type.toLowerCase() == "cash in") {
-                totalCash += +data[i].amount;
+        if (data.length !== 0) {
+            const lastId = data[Object.keys(data)[Object.keys(data).length - 1]].id;
+            const formOutput = document.getElementById("ulOutput");
+            let totalCash = 0;
+            let arrAmount = [];
+            let arrLabels = [];
+            for (let i = 0; i < data.length; i++) {
+                formOutput.innerHTML += `
+                    <tr id=output-${data[i].id}>
+                        <td>${data[i].id}</td>
+                        <td>${data[i].type}</td>
+                        <td>${data[i].name}</td>
+                        <td>${data[i].detail}</td>
+                        <td>${data[i].amount}</td>
+                        <td>
+                        <button type="button" class="btn btn-warning" onclick="editElement('${data[i].id}')">EDIT</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteElement('${data[i].id}')">DELETE</button>
+                        </td>
+                    </tr>
+                        `;
+                arrLabels.push(data[i].type);
+                if (data[i].type.toLowerCase() == "cash in") {
+                    totalCash += +data[i].amount;
+                }
+                else if (data[i].type.toLowerCase() == "cash out") {
+                    totalCash -= +data[i].amount;
+                }
+                arrAmount.push(totalCash);
             }
-            else if (data[i].type.toLowerCase() == "cash out") {
-                totalCash -= +data[i].amount;
-            }
-            arrAmount.push(totalCash);
+            renderChart(arrLabels, arrAmount);
+            return lastId;
         }
-        renderChart(arrLabels, arrAmount);
-        return lastId;
+        else {
+            return 0;
+        }
     });
 }

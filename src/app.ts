@@ -2,7 +2,7 @@ import renderHTML from "./renderHTML.js";
 import fetchHTML from "./fetchHTML.js";
 
 const formInput = document.getElementById("formTransaction") as HTMLFormElement;
-let lastId: number;
+let lastId: number = 0;
 let fetchDataPromise = Promise.resolve(fetchHTML());
 
 fetchDataPromise.then(value=>{

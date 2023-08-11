@@ -1,7 +1,7 @@
 import renderHTML from "./renderHTML.js";
 import fetchHTML from "./fetchHTML.js";
 const formInput = document.getElementById("formTransaction");
-let lastId;
+let lastId = 0;
 let fetchDataPromise = Promise.resolve(fetchHTML());
 fetchDataPromise.then(value => {
     lastId = value;
